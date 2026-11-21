@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Candidate Dashboard - JobFinder</title>
+  <meta name="description" content="View your job application metrics, manage saved jobs, update your skills, and edit your profile on JobFinder.">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- ==================== NAVIGATION BAR ==================== -->
+  <header class="navbar" role="banner">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo" aria-label="JobFinder Homepage">
+        <div class="brand-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <rect width="20" height="14" x="2" y="7" rx="2" ry="2"/>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+          </svg>
+        </div>
+        <span>Job<span class="brand-highlight">Finder</span></span>
+      </a>
+
+      <nav class="nav-menu" id="navMenu" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="jobs.html" class="nav-link">Find Jobs</a>
+        <a href="jobs.html?keyword=Tech" class="nav-link">Companies</a>
+        <a href="saved-jobs.html" class="nav-link">
+          Saved Jobs
+          <span class="nav-badge badge-saved-count" style="display: none;">0</span>
+        </a>
+        <a href="applications.html" class="nav-link">
+          Applications
+          <span class="nav-badge badge-applied-count" style="display: none;">0</span>
+        </a>
+        <a href="dashboard.html" class="nav-link active">Dashboard</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="jobs.html" class="btn btn-outline btn-sm">Find Jobs</a>
+        <button type="button" class="btn btn-primary btn-sm" id="openEditProfileBtn">
+          Edit Profile
+        </button>
+        <button type="button" class="mobile-toggle-btn" id="mobileToggle" aria-label="Toggle navigation menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content dashboard-page" role="main">
+    <div class="container">
+
+      <!-- ==================== WELCOME & PROFILE HEADER ==================== -->
+      <section class="dashboard-welcome-card" aria-label="Candidate Overview">
+        <div class="welcome-user-left">
+          <div class="profile-avatar-lg" id="profileAvatar">AM</div>
+          <div class="welcome-text-wrap">
+            <h1>Welcome back, <span id="welcomeUserName">Alex</span>!</h1>
+            <p class="welcome-headline" id="profileDisplayHeadline">Frontend Web Developer & UI/UX Enthusiast</p>
+            <div class="welcome-meta-pills">
+              <span class="meta-pill-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                <span id="profileDisplayEmail">alex.morgan@example.com</span>
+              </span>
+              <span class="meta-dot">&bull;</span>
+              <span class="meta-pill-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                <span id="profileDisplayPhone">(555) 234-5678</span>
+              </span>
+              <span class="meta-dot">&bull;</span>
+              <span class="meta-pill-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <span id="profileDisplayLocation">Austin, TX</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="welcome-progress-right">
+          <div class="progress-label-row">
+            <span>Profile Completeness</span>
+            <span id="profileCompletionScore">85%</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="profileCompletionBar" style="width: 85%;"></div>
+          </div>
+          <button type="button" class="btn btn-outline btn-xs" onclick="document.getElementById('openEditProfileBtn').click()">
+            Complete Profile &rarr;
+          </button>
+        </div>
+      </section>
+
+      <!-- ==================== STATS COUNTER WIDGETS ==================== -->
+      <section class="dashboard-stats-grid" aria-label="Quick Statistics">
+        <a href="saved-jobs.html" class="stat-widget-card">
+          <div class="stat-widget-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+            </svg>
+          </div>
+          <div class="stat-widget-info">
+            <div class="stat-widget-value" id="statSavedJobs">2</div>
+            <div class="stat-widget-title">Saved Positions</div>
+          </div>
+        </a>
+
+        <a href="applications.html#tracking" class="stat-widget-card">
+          <div class="stat-widget-icon" style="background-color: #ecfdf5; color: #059669;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+            </svg>
+          </div>
+          <div class="stat-widget-info">
+            <div class="stat-widget-value" id="statAppliedJobs">1</div>
+            <div class="stat-widget-title">Applied Positions</div>
+          </div>
+        </a>
+
+        <div class="stat-widget-card">
+          <div class="stat-widget-icon" style="background-color: #f3e8ff; color: #7e22ce;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+          </div>
+          <div class="stat-widget-info">
+            <div class="stat-widget-value" id="statViewedJobs">3</div>
+            <div class="stat-widget-title">Recently Viewed</div>
+          </div>
+        </div>
+
+        <a href="jobs.html" class="stat-widget-card">
+          <div class="stat-widget-icon" style="background-color: #e0f2fe; color: #0284c7;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+            </svg>
+          </div>
+          <div class="stat-widget-info">
+            <div class="stat-widget-value" id="statMatches">22</div>
+            <div class="stat-widget-title">Active Match Roles</div>
+          </div>
+        </a>
+      </section>
+
+      <!-- ==================== TWO-COLUMN DASHBOARD LAYOUT ==================== -->
+      <div class="dashboard-main-grid">
+
+        <!-- LEFT COLUMN: APPLICATION TRACKING & SKILLS -->
+        <div class="dashboard-left-col">
+          <!-- Recent Applications Table -->
+          <div class="dashboard-card">
+            <div class="dashboard-card-header">
+              <h2 class="dashboard-card-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                </svg>
+                Recent Application Activity
+              </h2>
+              <a href="applications.html#tracking" class="btn btn-ghost btn-sm">Full Tracker &rarr;</a>
+            </div>
+
+            <div id="dashboardApplicationsTable">
+              <!-- Populated by dashboard.js -->
+            </div>
+          </div>
+
+          <!-- Candidate Professional Summary & Bio -->
+          <div class="dashboard-card">
+            <div class="dashboard-card-header">
+              <h2 class="dashboard-card-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                Professional Bio & Summary
+              </h2>
+              <button type="button" class="btn btn-ghost btn-xs" onclick="document.getElementById('openEditProfileBtn').click()">Edit</button>
+            </div>
+            <p id="profileDisplayBio" style="font-size: 0.95rem; line-height: 1.6; color: var(--navy-sub);">
+              Loading bio...
+            </p>
+          </div>
+
+          <!-- Skills Management -->
+          <div class="dashboard-card">
+            <div class="dashboard-card-header">
+              <h2 class="dashboard-card-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+                Technical Skills & Tools
+              </h2>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">
+              Manage the key skills showcased to matching employers. Changes are instantly saved.
+            </p>
+
+            <div class="skills-input-row">
+              <input type="text" id="newSkillInput" placeholder="Add a skill (e.g. React, TypeScript, Docker)...">
+              <button type="button" class="btn btn-primary btn-sm" id="addSkillBtn">Add Skill</button>
+            </div>
+
+            <div class="skills-chips-wrapper" id="skillsChipsContainer">
+              <!-- Populated by dashboard.js -->
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: QUICK SAVED & VIEWED JOBS -->
+        <div class="dashboard-right-col">
+          <!-- Quick Saved Jobs -->
+          <div class="dashboard-card">
+            <div class="dashboard-card-header">
+              <h3 class="dashboard-card-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                </svg>
+                Saved Positions
+              </h3>
+              <a href="saved-jobs.html" class="btn btn-ghost btn-xs">View All</a>
+            </div>
+
+            <div id="dashboardSavedJobsList">
+              <!-- Populated by dashboard.js -->
+            </div>
+          </div>
+
+          <!-- Recently Viewed Jobs -->
+          <div class="dashboard-card">
+            <div class="dashboard-card-header">
+              <h3 class="dashboard-card-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                Recently Browsed
+              </h3>
+            </div>
+
+            <div id="dashboardRecentJobsList">
+              <!-- Populated by dashboard.js -->
+            </div>
+          </div>
+
+          <!-- Demo State Reset Card -->
+          <div class="dashboard-card" style="background-color: var(--border-light); border-style: dashed;">
+            <h4 style="font-size: 0.92rem; font-weight: 700; color: var(--navy-dark); margin-bottom: 6px;">
+              Testing & Demo Controls
+            </h4>
+            <p style="font-size: 0.8rem; color: var(--navy-sub); margin-bottom: 12px;">
+              Want to reset all saved jobs, applications, and profile edits back to default sample values?
+            </p>
+            <button type="button" class="btn btn-secondary btn-sm btn-block text-danger" id="resetDemoDataBtn">
+              Reset Demo Data
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ==================== EDIT PROFILE MODAL ==================== -->
+  <div class="modal-backdrop" id="editProfileModal" role="dialog" aria-modal="true" aria-labelledby="editProfileTitle">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2 id="editProfileTitle" class="modal-title">Edit Candidate Profile</h2>
+        <button type="button" class="modal-close-btn" id="closeEditProfileBtn" aria-label="Close dialog">&times;</button>
+      </div>
+
+      <form id="editProfileForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="editFullName" class="form-label">Full Name <span class="required">*</span></label>
+            <input type="text" id="editFullName" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label for="editHeadline" class="form-label">Professional Headline <span class="required">*</span></label>
+            <input type="text" id="editHeadline" class="form-control" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="editEmail" class="form-label">Email Address <span class="required">*</span></label>
+            <input type="email" id="editEmail" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label for="editPhone" class="form-label">Phone Number</label>
+            <input type="tel" id="editPhone" class="form-control">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="editLocation" class="form-label">Location (City, State)</label>
+            <input type="text" id="editLocation" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label for="editExpectedSalary" class="form-label">Target Salary Range</label>
+            <input type="text" id="editExpectedSalary" class="form-control" placeholder="e.g. $100,000 - $130,000 / year">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="editBio" class="form-label">Professional Summary & Bio</label>
+          <textarea id="editBio" class="form-control" rows="4"></textarea>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="cancelEditProfileBtn">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Profile</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo">
+            <div class="brand-icon-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <rect width="20" height="14" x="2" y="7" rx="2" ry="2"/>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+              </svg>
+            </div>
+            <span>Job<span class="brand-highlight">Finder</span></span>
+          </a>
+          <p class="footer-brand-p">
+            Comprehensive job tracking and candidate profiling system for engineers, data analysts, and product builders.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Portal Shortcuts</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="jobs.html">Find Jobs</a></li>
+            <li><a href="saved-jobs.html">Saved Jobs</a></li>
+            <li><a href="applications.html">Application Tracker</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Engineering Roles</h4>
+          <ul class="footer-links">
+            <li><a href="jobs.html?keyword=Frontend">Frontend Developers</a></li>
+            <li><a href="jobs.html?keyword=Python">Python Developers</a></li>
+            <li><a href="jobs.html?keyword=Java">Java Developers</a></li>
+            <li><a href="jobs.html?location=Remote">Remote Positions</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Simulation Notice</h4>
+          <p style="font-size: 0.88rem; color: var(--navy-sub);">
+            Profile details and stats are saved locally in your browser's Local Storage for demonstration.
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="simulation-disclaimer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          <span>Demo Notice: No profile data is stored on external servers.</span>
+        </div>
+        <div>
+          &copy; 2026 JobFinder Inc. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

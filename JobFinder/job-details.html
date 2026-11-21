@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Details - JobFinder</title>
+  <meta name="description" content="View comprehensive job descriptions, responsibilities, required qualifications, and salary expectations on JobFinder.">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/jobs.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- ==================== NAVIGATION BAR ==================== -->
+  <header class="navbar" role="banner">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo" aria-label="JobFinder Homepage">
+        <div class="brand-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <rect width="20" height="14" x="2" y="7" rx="2" ry="2"/>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+          </svg>
+        </div>
+        <span>Job<span class="brand-highlight">Finder</span></span>
+      </a>
+
+      <nav class="nav-menu" id="navMenu" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="jobs.html" class="nav-link active">Find Jobs</a>
+        <a href="jobs.html?keyword=Tech" class="nav-link">Companies</a>
+        <a href="saved-jobs.html" class="nav-link">
+          Saved Jobs
+          <span class="nav-badge badge-saved-count" style="display: none;">0</span>
+        </a>
+        <a href="applications.html" class="nav-link">
+          Applications
+          <span class="nav-badge badge-applied-count" style="display: none;">0</span>
+        </a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="jobs.html" class="btn btn-outline btn-sm">All Jobs</a>
+        <a href="saved-jobs.html" class="btn btn-primary btn-sm">Saved Jobs</a>
+        <button type="button" class="mobile-toggle-btn" id="mobileToggle" aria-label="Toggle navigation menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content job-details-page" role="main">
+    <div class="container">
+      <!-- Breadcrumb navigation -->
+      <nav class="breadcrumb-nav" id="jobBreadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="crumb-separator">/</span>
+        <a href="jobs.html">Find Jobs</a>
+        <span class="crumb-separator">/</span>
+        <span class="crumb-current">Job Details</span>
+      </nav>
+
+      <!-- Main Job Details Container (Populated by job-details.js) -->
+      <div id="jobDetailsContainer">
+        <!-- Loading Placeholder -->
+        <div class="empty-state">
+          <p class="empty-state-desc">Loading job details...</p>
+        </div>
+      </div>
+
+      <!-- Similar Jobs Recommendations Section -->
+      <section class="similar-jobs-section" aria-labelledby="similarHeading">
+        <div class="section-header">
+          <div>
+            <h3 id="similarHeading" class="section-title">Similar Recommended Positions</h3>
+            <p class="section-desc">Other candidates exploring this position also applied for these opportunities.</p>
+          </div>
+        </div>
+
+        <div class="similar-jobs-grid" id="similarJobsContainer">
+          <!-- Populated by job-details.js -->
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo">
+            <div class="brand-icon-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <rect width="20" height="14" x="2" y="7" rx="2" ry="2"/>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+              </svg>
+            </div>
+            <span>Job<span class="brand-highlight">Finder</span></span>
+          </a>
+          <p class="footer-brand-p">
+            Connecting talented software engineers and designers with market-leading tech companies.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="jobs.html">Find Jobs</a></li>
+            <li><a href="saved-jobs.html">Saved Jobs</a></li>
+            <li><a href="applications.html">Applied Positions</a></li>
+            <li><a href="dashboard.html">Candidate Dashboard</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Engineering Roles</h4>
+          <ul class="footer-links">
+            <li><a href="jobs.html?category=Engineering">All Engineering Jobs</a></li>
+            <li><a href="jobs.html?keyword=Python">Python Developers</a></li>
+            <li><a href="jobs.html?keyword=Frontend">Frontend Developers</a></li>
+            <li><a href="jobs.html?keyword=Java">Java Developers</a></li>
+            <li><a href="jobs.html?location=Remote">100% Remote Tech Jobs</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Job Alerts</h4>
+          <p style="font-size: 0.88rem; color: var(--navy-sub); margin-bottom: 12px;">Get immediate updates when new positions match your criteria.</p>
+          <form id="newsletterForm" style="display: flex; gap: 6px;">
+            <input type="email" placeholder="Your email address" required style="flex: 1; padding: 8px 12px; border: 1px solid var(--border-color); border-radius: var(--radius-md); font-size: 0.85rem; outline: none;">
+            <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="simulation-disclaimer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          <span>Demo Notice: This is a frontend-only simulation job portal. Applying triggers client-side Local Storage persistence.</span>
+        </div>
+        <div>
+          &copy; 2026 JobFinder Inc. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/job-details.js"></script>
+</body>
+</html>
